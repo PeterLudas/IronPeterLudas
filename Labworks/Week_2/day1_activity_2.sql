@@ -1,0 +1,22 @@
+SELECT district_id FROM account ORDER BY district_id;
+SELECT max(client_id) FROM client WHERE district_id = 72;
+SELECT amount FROM loan ORDER BY amount LIMIT 3;
+SELECT DISTINCT status FROM loan;
+SELECT loan_id, max(payments) FROM loan;
+SELECT account_id, amount FROM loan ORDER BY account_id LIMIT 5;
+SELECT account_id FROM loan WHERE duration = 60 ORDER BY amount LIMIT 5;
+SELECT DISTINCT k_symbol FROM `order` ORDER BY k_symbol;
+SELECT order_id FROM  `order` WHERE account_id = 34;
+SELECT account_id FROM `order` WHERE order_id > 29540 AND order_id < 29560; 
+SELECT amount FROM `order` WHERE account_to = 30067122;
+SELECT trans_id, date, type, amount FROM trans WHERE account_id = 793 ORDER BY date DESC LIMIT 10;
+SELECT district_id, count(client_id) FROM client WHERE district_id < 10 GROUP BY district_id; 
+SELECT type, count(issued) FROM card GROUP BY type;
+SELECT account_id, sum(amount) FROM loan GROUP BY amount ORDER BY amount DESC LIMIT 10;
+SELECT date, count(loan_id) FROM loan WHERE date < 930907 GROUP BY date ORDER BY date DESC; 
+SELECT date, duration, count(loan_id) FROM loan WHERE date > 971201 AND date < 971231 GROUP BY duration, date ORDER BY date, duration; 
+SELECT account_id, type, sum(amount) AS total_amount FROM trans WHERE account_id = 396 GROUP BY type;
+SELECT account_id, 
+REPLACE(REPLACE(`type`, "PRIJEM", "INCOMING"), "VYDAJ", "OUTGOING") AS transaction_type, round(sum(amount)) AS total_amount FROM trans WHERE account_id = 396 GROUP BY type;
+#SELECT account_id, type as transaction_type, round(sum(amount)) AS total_amount FROM trans WHERE account_id = 396 GROUP BY type;
+#SELECT account_id, type as transaction_type, round(sum(amount)) AS total_amount FROM trans WHERE account_id = 396 GROUP BY type;
